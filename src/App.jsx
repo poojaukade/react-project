@@ -8,8 +8,6 @@ import Footer from "./components/Footer";
 import StatePlayground from "./components/StatePlayground";
 import SearchPanel from "./components/SearchPanel";
 import RegistrationForm from "./components/RegistrationForm";
-import FetchTest from './components/FetchTest';
-import StorageTest from './components/StorageTest';
 import RecipeApp from "./components/RecipeApp";
 
 function App() {
@@ -132,9 +130,7 @@ function App() {
         </section>
       
         <RegistrationForm />
-       {/* <FetchTest />
-       <StorageTest /> */}
-
+       
        <RecipeApp />
 
       </main>
