@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-function RecipeSearch({ onSearch }) {
-  const [inputValue, setInputValue] = useState("");
+function RecipeSearch({ onSearch , initialValue }) {
+  const [inputValue, setInputValue] = useState(initialValue);
 
   function handleSubmit(event) {
     event.preventDefault();

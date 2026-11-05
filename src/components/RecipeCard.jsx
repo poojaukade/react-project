@@ -1,4 +1,4 @@
-function RecipeCard({ recipe }) {
+function RecipeCard({ recipe ,onViewDetails }) {
   return (
     <article className="recipe-card">
       <img
@@ -13,7 +13,8 @@ function RecipeCard({ recipe }) {
 
         <p>{recipe.strArea} Cuisine</p>
 
-        <button type="button">
+        <button type="button" 
+         onClick={() => onViewDetails(recipe.idMeal)}>
           View Details
         </button>
       </div>

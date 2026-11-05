@@ -2,13 +2,28 @@ import { useState } from "react";
 import RecipeSearch from "./RecipeSearch";
 import RecipeList from "./RecipeList";
 import useFetch from "../hooks/useFetch";
+import useLocalStorage from "../hooks/useLocalStorage";
+import RecipeDetails from "./RecipeDetails";
 import "./RecipeApp.css";
 
 function RecipeApp() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedRecipeId, setSelectedRecipeId] = useState(null);
+
+  const [searchTerm, setSearchTerm] = useLocalStorage(
+    "recipe-search",
+    ""
+  );
 
   function handleSearch(value) {
     setSearchTerm(value);
+  }
+
+  function handleViewDetails(recipeId) {
+    setSelectedRecipeId(recipeId);
+  }
+
+  function handleCloseDetails() {
+    setSelectedRecipeId(null);
   }
 
   const url = searchTerm
@@ -21,7 +36,9 @@ function RecipeApp() {
     <section className="recipe-app">
       <h2>Recipe Finder</h2>
 
-      <RecipeSearch onSearch={handleSearch} />
+      <RecipeSearch
+        onSearch={handleSearch}
+        initialValue={searchTerm} />
 
       {loading && (
         <p className="recipe-message recipe-loading">
@@ -35,8 +52,18 @@ function RecipeApp() {
         </p>
       )}
 
-      {data?.meals && (
-        <RecipeList recipes={data.meals} />
+      {selectedRecipeId ? (
+        <RecipeDetails
+          recipeId={selectedRecipeId}
+          onClose={handleCloseDetails}
+        />
+      ) : (
+        data?.meals && (
+          <RecipeList
+            recipes={data.meals}
+            onViewDetails={handleViewDetails}
+          />
+        )
       )}
 
       {data && data.meals === null && (
