@@ -5,7 +5,7 @@ function RecipeDetails({ recipeId, onClose }) {
   const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}`;
 
   const { data, loading, error } = useFetch(url);
-  console.log("meals+++++",data?.meals);
+//   console.log("meals+++++",data?.meals);
 
   const recipe = data?.meals?.[0];
 
